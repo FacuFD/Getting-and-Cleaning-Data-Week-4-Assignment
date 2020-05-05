@@ -38,14 +38,19 @@ X <- rbind(x_train, x_test) ### Merges the x datasets
 Y <- rbind(y_train, y_test) ### Merges the y datasets
 Subject <- rbind(subject_train, subject_test) ### Merges the subject datasets
 Merged_Data <- cbind(Subject, Y, X) ### Merges all three datasets into a final dataset
+<<<<<<< HEAD
 
 str(Merged_Data) ### Inspect result
+=======
+str(Merged_Data)
+>>>>>>> e7f5e31abf708d2f77158c653bdc98d1ca21085e
 
 
 
 ### Part 2: Extract only the measurements on the mean and standard deviation for each measurement.
 
 TidyData <- Merged_Data %>% ### Use the newly created master dataset 
+<<<<<<< HEAD
         select(subject, code, contains("mean"), contains("std")) %>% ### select subject, code and the mean and sd for each measurement
         print ### Check results
 
@@ -55,11 +60,22 @@ View(TidyData) ### Inspect result
 
 
 ### Part 3: Use descriptive activity names to name the activities in the data set and replaces the column header with a descriptive name
+=======
+        select(subject, code, contains("mean"), contains("std")) %>% ### select subject, code and the measurements on the mean and sd for each measurement
+        print ### Check results
+
+str(TidyData)
+View(TidyData)
+### Part 3: Use descriptive activity names to name the activities in the data set
+### &
+### Part 4: Appropriately labels the data set with descriptive variable names.
+>>>>>>> e7f5e31abf708d2f77158c653bdc98d1ca21085e
 
 TidyData$code <- activities[TidyData$code, 2] 
 
 names(TidyData)[2] = "activity" ### Renames the second column to "activities"
 
+<<<<<<< HEAD
 
 
 ### Part 4: Appropriately labels the data set with descriptive variable names.
@@ -77,6 +93,22 @@ names(TidyData)<-gsub("-std()", "standarddeviation", names(TidyData), ignore.cas
 names(TidyData)<-gsub("-freq()", "frequency", names(TidyData), ignore.case = TRUE)
 names(TidyData)<-gsub("angle", "angle", names(TidyData))
 names(TidyData)<-gsub("gravity", "gravity", names(TidyData))
+=======
+### Rename the abbreviations to more descriptive variable names
+
+names(TidyData)<-gsub("Acc", "Accelerometer", names(TidyData))
+names(TidyData)<-gsub("Gyro", "Gyroscope", names(TidyData))
+names(TidyData)<-gsub("BodyBody", "Body", names(TidyData))
+names(TidyData)<-gsub("Mag", "Magnitude", names(TidyData))
+names(TidyData)<-gsub("^t", "Time", names(TidyData))
+names(TidyData)<-gsub("^f", "Frequency", names(TidyData))
+names(TidyData)<-gsub("tBody", "TimeBody", names(TidyData))
+names(TidyData)<-gsub("-mean()", "Mean", names(TidyData), ignore.case = TRUE)
+names(TidyData)<-gsub("-std()", "STD", names(TidyData), ignore.case = TRUE)
+names(TidyData)<-gsub("-freq()", "Frequency", names(TidyData), ignore.case = TRUE)
+names(TidyData)<-gsub("angle", "Angle", names(TidyData))
+names(TidyData)<-gsub("gravity", "Gravity", names(TidyData))
+>>>>>>> e7f5e31abf708d2f77158c653bdc98d1ca21085e
 
 str(TidyData) ### Inspect the data
 
@@ -86,6 +118,7 @@ str(TidyData) ### Inspect the data
 ### independent tidy data set with the average of each variable for each activity and each subject.
 
 
+<<<<<<< HEAD
 FinalDataSet <- TidyData %>% ### Create a new tidy data set
         group_by(subject, activity) %>% ### Group by the desired subject and activity
         summarize_all(funs(mean)) ### Summarize the mean of each varialbe for each activity and subject
@@ -93,4 +126,14 @@ FinalDataSet <- TidyData %>% ### Create a new tidy data set
 View(FinalDataSet) ### Inspect the data
 
 write.table(FinalDataSet, "FinalDataSet.txt", row.name=FALSE) ### Create a new file for this data frame
+=======
+FinalData <- TidyData %>% ### Create a new tidy data set
+        group_by(subject, activity) %>% ### Group by the desired subject and activity
+        summarize_all(funs(mean)) ### Summarize the mean of each varialbe for each activity and subject
+
+View(FinalData) ### Inspect the data
+
+write.table(FinalData, "FinalData.txt", row.name=FALSE) ### Create a new file for this data frame
+
+>>>>>>> e7f5e31abf708d2f77158c653bdc98d1ca21085e
 
