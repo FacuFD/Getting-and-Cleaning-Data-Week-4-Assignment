@@ -38,7 +38,8 @@ X <- rbind(x_train, x_test) ### Merges the x datasets
 Y <- rbind(y_train, y_test) ### Merges the y datasets
 Subject <- rbind(subject_train, subject_test) ### Merges the subject datasets
 Merged_Data <- cbind(Subject, Y, X) ### Merges all three datasets into a final dataset
-str(Merged_Data)
+
+str(Merged_Data) ### Inspect result
 
 
 
@@ -48,10 +49,8 @@ TidyData <- Merged_Data %>% ### Use the newly created master dataset
         select(subject, code, contains("mean"), contains("std")) %>% ### select subject, code and the mean and sd for each measurement
         print ### Check results
 
-str(TidyData)
-View(TidyData)
-
-colnames(TidyData)
+str(TidyData) ### Inspect result
+View(TidyData) ### Inspect result
 
 
 
@@ -66,18 +65,18 @@ names(TidyData)[2] = "activity" ### Renames the second column to "activities"
 ### Part 4: Appropriately labels the data set with descriptive variable names.
 ### Rename the abbreviations to more descriptive variable names
 
-names(TidyData)<-gsub("Acc", "Accelerometer", names(TidyData))
-names(TidyData)<-gsub("Gyro", "Gyroscope", names(TidyData))
-names(TidyData)<-gsub("BodyBody", "Body", names(TidyData))
-names(TidyData)<-gsub("Mag", "Magnitude", names(TidyData))
-names(TidyData)<-gsub("^t", "Time", names(TidyData))
-names(TidyData)<-gsub("^f", "Frequency", names(TidyData))
-names(TidyData)<-gsub("tBody", "TimeBody", names(TidyData))
-names(TidyData)<-gsub("-mean()", "Mean", names(TidyData), ignore.case = TRUE)
-names(TidyData)<-gsub("-std()", "STD", names(TidyData), ignore.case = TRUE)
-names(TidyData)<-gsub("-freq()", "Frequency", names(TidyData), ignore.case = TRUE)
-names(TidyData)<-gsub("angle", "Angle", names(TidyData))
-names(TidyData)<-gsub("gravity", "Gravity", names(TidyData))
+names(TidyData)<-gsub("Acc", "accelerometer", names(TidyData))
+names(TidyData)<-gsub("Gyro", "gyroscope", names(TidyData))
+names(TidyData)<-gsub("BodyBody", "body", names(TidyData))
+names(TidyData)<-gsub("Mag", "magnitude", names(TidyData))
+names(TidyData)<-gsub("^t", "time", names(TidyData))
+names(TidyData)<-gsub("^f", "frequency", names(TidyData))
+names(TidyData)<-gsub("tBody", "timebody", names(TidyData))
+names(TidyData)<-gsub("-mean()", "mean", names(TidyData), ignore.case = TRUE)
+names(TidyData)<-gsub("-std()", "standarddeviation", names(TidyData), ignore.case = TRUE)
+names(TidyData)<-gsub("-freq()", "frequency", names(TidyData), ignore.case = TRUE)
+names(TidyData)<-gsub("angle", "angle", names(TidyData))
+names(TidyData)<-gsub("gravity", "gravity", names(TidyData))
 
 str(TidyData) ### Inspect the data
 
@@ -93,6 +92,5 @@ FinalDataSet <- TidyData %>% ### Create a new tidy data set
 
 View(FinalDataSet) ### Inspect the data
 
-write.table(FinalDataSet, "FinalData.txt", row.name=FALSE) ### Create a new file for this data frame
-
+write.table(FinalDataSet, "FinalDataSet.txt", row.name=FALSE) ### Create a new file for this data frame
 
