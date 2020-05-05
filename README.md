@@ -1,4 +1,5 @@
-# This is the repository for the final assignment of the Getting and Cleaning Data course.
+# Getting and Cleaning Data Week 4 Assignment
+This is the repository for the final assignment of the Getting and Cleaning Data course.
 
 To get started, load the dplyr package in R studio, download and unzip the files from the link below.
 
